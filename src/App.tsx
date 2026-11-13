@@ -124,7 +124,7 @@ export default function App() {
                     className="inline-flex items-center gap-2 min-h-[44px] px-3 -ml-3 text-sm font-semibold text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer"
                   >
                     <ArrowLeft className="w-4 h-4" />
-                    <span>All Classes</span>
+                    <span>...by KP Sir</span>
                   </button>
 
                   <span className="font-mono text-xs font-medium text-slate-500 tabular-nums">

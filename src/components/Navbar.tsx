@@ -62,7 +62,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             onClick={() => { onGoHome(); setMobileOpen(false); }}
             className="px-4 py-2 text-sm font-semibold text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition-colors whitespace-nowrap shrink-0 cursor-pointer"
           >
-            All Classes
+            ...by KP Sir
           </button>
 
           <button
