@@ -442,7 +442,7 @@ export const TimedMcqRunner: React.FC<TimedMcqRunnerProps> = ({
           </div>
 
           <div className="pt-2 border-t border-slate-100 flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-500">
-            <span>Blue: Active</span>
+            <span>Forest: Active</span>
             <span>Green: Answered</span>
             <span>Amber: Review</span>
           </div>

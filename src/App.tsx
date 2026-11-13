@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, ArrowRight, Compass } from 'lucide-react';
+import { ArrowLeft, ArrowRight, BookOpen, Timer, Check, MoveUpRight } from 'lucide-react';
 import { ChapterMeta, ClassLevel } from './types/curriculum';
 import { CHAPTERS_BY_CLASS, CLASS_LIST } from './data/curriculumIndex';
 import { Navbar } from './components/Navbar';
@@ -8,7 +8,6 @@ import { ChapterView } from './components/ChapterView';
 export default function App() {
   const [selectedClass, setSelectedClass] = useState<ClassLevel | null>(null);
   const [selectedChapter, setSelectedChapter] = useState<ChapterMeta | null>(null);
-  const [heroImgError, setHeroImgError] = useState(false);
 
   const handleGoHome = () => {
     setSelectedClass(null);
@@ -33,69 +32,65 @@ export default function App() {
   const classChapters = selectedClass ? CHAPTERS_BY_CLASS[selectedClass] : [];
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F8FAFC] text-[#0F172A]">
+    <div className="app-shell min-h-screen flex flex-col">
       <Navbar
         activeClass={selectedClass}
         onSelectClass={handleSelectClass}
         onGoHome={handleGoHome}
       />
 
-      <main className="flex-1 py-8 sm:py-12">
+      <main className="site-main flex-1">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
           {/* View 1: Simple Home Page — Only Class 9, 10, 11, 12 */}
           {selectedClass === null && (
             <div className="space-y-8 sm:space-y-10">
-              {/* Compact Editorial Intro Split */}
-              <section className="bg-white border border-slate-200 rounded-xl overflow-hidden">
-                <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
-                  <div className="lg:col-span-7 p-6 sm:p-8 lg:p-10 flex flex-col justify-center gap-4">
-                    <div className="text-xs font-medium text-blue-700">
-                      CBSE Rationalised Mathematics · Classes 9 to 12
-                    </div>
-                    <h1 className="font-display text-3xl sm:text-4xl font-bold text-slate-900 leading-[1.15] tracking-tight text-balance">
-                      Select your class to study formulas and timed MCQ papers.
-                    </h1>
-                    <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-xl">
-                      Every rationalised NCERT chapter organized cleanly with two focused tools: a complete chapter formula sheet and a 100-question timed MCQ test paper.
-                    </p>
-                  </div>
-
-                  <div className="lg:col-span-5 min-h-[200px] sm:min-h-[240px] bg-slate-100 border-t lg:border-t-0 lg:border-l border-slate-200">
-                    {!heroImgError ? (
-                      <img
-                        src="/src/assets/images/hero_math_atlas_1794587002862.jpg"
-                        alt="Mathematics study desk with brass compass, geometry set square, and parabola notebook"
-                        referrerPolicy="no-referrer"
-                        onError={() => setHeroImgError(true)}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center">
-                        <Compass className="w-10 h-10 text-blue-700 mb-2" />
-                        <span className="font-display text-base font-semibold text-slate-900">
-                          CBSE Class 9–12 Mathematics
-                        </span>
-                      </div>
-                    )}
-                  </div>
+              <section className="home-hero">
+                <div className="hero-copy">
+                  <div className="eyebrow"><span className="status-dot" /> CBSE Rationalised Mathematics · Classes 9 to 12</div>
+                  <h1>Select your class to study <em>formulas</em> and timed MCQ papers<span className="accent-period">.</span></h1>
+                  <p>Every rationalised NCERT chapter organized cleanly with two focused tools: a complete chapter formula sheet and a 100-question timed MCQ test paper.</p>
+                  <a href="#classes" className="hero-cta">Choose your class <ArrowRight size={18} /></a>
+                  <div className="hero-notes"><span><Check size={15} /> NCERT aligned</span><span><Check size={15} /> Chapter-wise practice</span></div>
+                </div>
+                <div className="math-art" aria-hidden="true">
+                  <div className="art-label">THE BEAUTY OF MATHEMATICS</div>
+                  <svg viewBox="0 0 420 400" fill="none">
+                    <defs><pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M 28 0 L 0 0 0 28" stroke="currentColor" strokeOpacity=".10" /></pattern></defs>
+                    <rect width="420" height="400" fill="url(#grid)" />
+                    <circle cx="214" cy="198" r="132" stroke="currentColor" strokeOpacity=".45" />
+                    <circle cx="214" cy="198" r="94" stroke="currentColor" strokeOpacity=".22" />
+                    <path d="M80 290 214 66 346 290Z" fill="#d6e7a6" fillOpacity=".12" stroke="#d6e7a6" strokeWidth="2" />
+                    <path d="M45 198H385M214 35V355" stroke="currentColor" strokeOpacity=".35" strokeDasharray="4 7" />
+                    <path d="M75 295Q214 -55 353 295" stroke="#d6e7a6" strokeWidth="3" />
+                    <path d="m214 198 132 92" stroke="currentColor" strokeOpacity=".35" />
+                    <circle cx="214" cy="66" r="5" fill="#d6e7a6" /><circle cx="80" cy="290" r="5" fill="#d6e7a6" /><circle cx="346" cy="290" r="5" fill="#d6e7a6" />
+                    <text x="231" y="61" fill="currentColor" fontSize="16" fontFamily="serif" fontStyle="italic">y = x²</text>
+                    <text x="305" y="192" fill="currentColor" fontSize="14" fontFamily="serif" fontStyle="italic">r</text>
+                    <text x="194" y="385" fill="currentColor" fontSize="14" fontFamily="serif" fontStyle="italic">x</text>
+                  </svg>
+                  <div className="art-caption"><span>∑</span><div>Formula Lists<br /><strong>Mathematics, made clear.</strong></div><MoveUpRight size={20} /></div>
                 </div>
               </section>
+              <div className="study-strip">
+                <div><BookOpen size={22} /><span>Complete chapter<br /><strong>Formula sheets</strong></span></div>
+                <div><Timer size={22} /><span>100 questions per chapter<br /><strong>Timed MCQ papers</strong></span></div>
+                <div className="strip-note">One chapter at a time.<br /><strong>A little more confident, every day.</strong></div>
+              </div>
 
               {/* Four Class Cards: Class 9, Class 10, Class 11, Class 12 */}
-              <section aria-label="Select CBSE Class" className="space-y-4">
-                <h2 className="font-display text-xl sm:text-2xl font-bold text-slate-900">
-                  Choose Your Class
-                </h2>
+              <section id="classes" aria-label="Select CBSE Class" className="class-section space-y-4">
+                <div className="section-heading"><div><div className="eyebrow">YOUR NEXT CHAPTER</div><h2>Choose Your Class</h2></div><span>Four classes. One place to learn.</span></div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+                <div className="class-grid">
                   {CLASS_LIST.map((cls) => (
                     <button
                       key={cls.level}
                       type="button"
                       onClick={() => handleSelectClass(cls.level)}
-                      className="group p-6 bg-white border border-slate-200 hover:border-blue-600 rounded-xl text-left flex flex-col justify-between gap-6 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-700"
+                      className="class-card group text-left"
                     >
                       <div className="space-y-2.5">
+                        <div className="class-card-top"><span className="class-number">{cls.level}</span><MoveUpRight size={23} /></div>
                         <div className="font-mono text-xs font-semibold text-blue-700 tabular-nums">
                           CBSE Mathematics
                         </div>
@@ -190,7 +185,7 @@ export default function App() {
         </div>
       </main>
 
-      <footer className="border-t border-slate-200 bg-white py-6 no-print">
+      <footer className="site-footer border-t border-slate-200 py-6 no-print">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-slate-500">
           <span className="font-display text-sm font-bold text-slate-900">Sankhya</span>
           <span>CBSE Class 9–12 Mathematics · Formula Lists & Timed 100-MCQ Practice Papers</span>
