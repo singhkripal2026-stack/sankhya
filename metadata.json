@@ -1,0 +1,6 @@
+{
+  "name": "Sankhya — CBSE Class 9–12 Mathematics Hub",
+  "description": "Complete CBSE Class 9 to 12 Mathematics platform featuring NCERT textbooks, chapterwise revision notes, NCERT exercise solutions, board PYQs, and interactive practice test papers.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
